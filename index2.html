@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <title>EKUB</title>
+</head>
+
+<body>
+
+
+    <a href="index3.html">MENU</a>
+    <div class="main container">
+
+
+
+        <div class="row shadow-lg" style="margin-top: 70px;padding: 40px;">
+            <div id="card " class="col-lg-4 col-sm-8justify-content-center " style="margin-bottom: 50px;">
+                <div class="card shadow-lg" style="background-color: white;">
+                    <h2 style="background-color: lightgray;padding: 20px;color: orange;">Ekub</h2>
+                    <input id="FNAME" type="text" placeholder="first name">
+                    <input id="LNAME" type="text" placeholder="last name">
+                    <input id="PHONE" type="number" placeholder="phone">
+                    <label for="">Amount of money</label>
+                    <select name="" id="catgory">
+                        <option value="0"></option>
+                        <option value="1000">1000</option>
+                        <option value="2000">2000</option>
+                        <option value="5000">5000</option>
+                        <option value="10000">10000</option>
+                    </select>
+                    <button style="margin: 40px; background-color:black;" onclick="fun()"
+                        class="btn btn-primary btn-lg btn-block "> Add </button>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-8 mx-auto d-block border ">
+
+                <table id="work" class="table table-striped   table-responsive">
+                    <tr>
+                        <td>first name</td>
+                        <td>lastname</td>
+                        <td>amount</td>
+
+                    </tr>
+                </table>
+                <input id="ftotal" type="text" placeholder="total price">
+                <button type="button" class="btn btn-dark mt-5 text-center" onclick="generate()" ;>
+                    Generate
+                </button>
+                <div id="win"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    var tFname = new Array();
+    var tLname = new Array();
+    var tAmount = new Array();
+    var sum=0;
+
+    function fun() {
+
+        
+        var fname = document.getElementById("FNAME").value;
+        var lname = document.getElementById("LNAME").value;
+        var amountSelect = document.getElementById("catgory");
+        var amount = amountSelect.options[amountSelect.selectedIndex].value;
+
+        sum+=Number(amount);
+
+        document.getElementById("ftotal").value = sum;
+       
+
+
+        var table = document.getElementById("work");
+        var numRow = document.getElementById('work').rows.length;
+
+        var row = table.insertRow();
+        row.id = numRow;
+
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+   
+
+        cell1.innerHTML = fname;
+        cell2.innerHTML = lname;
+        cell3.innerHTML = amount;
+
+        tFname.push(fname);
+        tLname.push(lname);
+        tAmount.push(amount);
+         
+
+
+        
+
+    }   
+
+    function generate() {
+        var ran = Math.floor(Math.random() * tAmount.length);
+        var printM = `<div>
+              <div class=row>
+<div class="col-4 border fw-bold">firstname</div>
+<div class="col-4 border fw-bold">lastname</div>
+<div class="col-4 border fw-bold">amount</div>
+              </div> 
+              
+              <div class=row>
+                <div class="col-4 border ">${tFname[ran]}</div>
+                <div class="col-4 border ">${tLname[ran]}</div>
+                <div class="col-4 border ">${sum}</div>
+                              </div> 
+            </div>`
+
+            document.getElementById("win").innerHTML = printM;
+    }
+
+
+   
+
+</script>
+
+
+</html>
